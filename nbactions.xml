@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-tomcat clean run no tests</actionName>
+            <displayName>tomcat clean run no tests</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>tomcat:run-war</goal>
+                <goal>-DskipTests</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-hot-deploy</actionName>
+            <displayName>hot-deploy</displayName>
+            <goals>
+                <goal>tomcat:deploy-only</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-deploy</actionName>
+            <displayName>deploy</displayName>
+            <goals>
+                <goal>tomcat:deploy</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-install and run only</actionName>
+            <displayName>install and run only</displayName>
+            <goals>
+                <goal>install</goal>
+                <goal>tomcat:run-war</goal>
+                <goal>-DskipTests</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>run</actionName>
+        </action>
+        <action>
+            <actionName>CUSTOM-clean install tomcat:run-war</actionName>
+            <displayName>clean install tomcat:run-war</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>tomcat:run-war</goal>
+            </goals>
+        </action>
+    </actions>
