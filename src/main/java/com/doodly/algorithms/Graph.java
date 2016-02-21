@@ -14,13 +14,14 @@ import java.util.NoSuchElementException;
 /**
  *
  * @author gokumar
+ * @param <T>
  */
 public class Graph<T> implements Iterable<T>  {
 
     /* A map from nodes in the graph to sets of outgoing edges.  Each
      * set of edges is represented by a map from edges to doubles.
      */
-    private final Map<T, Map<T, Double>> graph = new HashMap<T, Map<T, Double>>();
+    private final Map<T, Map<T, Double>> graph = new HashMap<>();
 
     /**
      *  Adds a new node to the graph. If the node already exists then its a
