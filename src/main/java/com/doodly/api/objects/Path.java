@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Path implements Comparable<Path> {
 
-    private List<Node> path = new ArrayList<>();
+    private List<Node> nodes = new ArrayList<>();
     private String id = null;
     private double cost;
 
@@ -27,12 +27,12 @@ public class Path implements Comparable<Path> {
         this.id = id;
     }
 
-    public List<Node> getPath() {
-        return path;
+    public List<Node> getNodes() {
+        return nodes;
     }
 
-    public void setPath(List<Node> path) {
-        this.path = path;
+    public void setNodes(List<Node> nodes) {
+        this.nodes = nodes;
     }
 
     public double getCost() {
@@ -44,7 +44,7 @@ public class Path implements Comparable<Path> {
     }
 
     public void addPath(Node node) {
-        path.add(node);
+        nodes.add(node);
     }
 
     @Override

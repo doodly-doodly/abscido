@@ -24,8 +24,8 @@ public class FindPathIntersection {
             node1.setName(str1);
             Node node2 = new Node();
             node2.setName(str2);
-            int indx1 = path.getPath().indexOf(node1);
-            int indx2 = path.getPath().indexOf(node2);
+            int indx1 = path.getNodes().indexOf(node1);
+            int indx2 = path.getNodes().indexOf(node2);
             if (indx1 == -1 || indx2 == -1) {
             } else if (indx2 > indx1) {
                 intersectionPaths.add(path);
