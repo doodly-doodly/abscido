@@ -74,7 +74,9 @@ public class PathResource {
                     costPath.addPath(node);
                 }
                 costPath.setCost(cost);
-                shortlistedPaths.add(costPath);
+                if(costPath.getNodes().size() > 2){
+                    shortlistedPaths.add(costPath);
+                }
             }
             Collections.sort(shortlistedPaths, com.doodly.api.objects.Path.PathComparator);
             PathResponse pathResponse = new PathResponse();
