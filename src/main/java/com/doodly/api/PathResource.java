@@ -46,42 +46,44 @@ public class PathResource {
 
             FindPathIntersection fpi = new FindPathIntersection();
             List<com.doodly.api.objects.Path> intersections = fpi.intersection(existingPaths, newRequest);
-            Collections.sort(intersections, com.doodly.api.objects.Path.PathComparator);
-            PathResponse pathResponse = new PathResponse();
-            pathResponse.setPath(intersections.get(0));
-            return pathResponse;
-        } else {
-            for (Node node : nodes) {
-                graph.addNode(node.getName());
+            if (intersections != null && intersections.size() > 0) {
+                Collections.sort(intersections, com.doodly.api.objects.Path.PathComparator);
+                PathResponse pathResponse = new PathResponse();
+                pathResponse.setPath(intersections.get(0));
+                return pathResponse;
             }
-
-            for (Edge edge : edges) {
-                graph.addEdge(edge.getFrom().getName(), edge.getTo().getName(), edge.getCost());
-            }
-
-            FindAllPaths<String> findAllPaths = new FindAllPaths<>(graph);
-            List<List<String>> paths = findAllPaths.getAllPaths(from.getName(), to.getName());
-            Node node;
-            com.doodly.api.objects.Path costPath;
-            double cost;
-            List<com.doodly.api.objects.Path> shortlistedPaths = new ArrayList<>();
-            for (List<String> path : paths) {
-                cost = findAllPaths.getCost(path);
-                costPath = new com.doodly.api.objects.Path();
-                for (String pathNode : path) {
-                    node = new Node();
-                    node.setName(pathNode);
-                    costPath.addPath(node);
-                }
-                costPath.setCost(cost);
-                if(costPath.getNodes().size() > 2){
-                    shortlistedPaths.add(costPath);
-                }
-            }
-            Collections.sort(shortlistedPaths, com.doodly.api.objects.Path.PathComparator);
-            PathResponse pathResponse = new PathResponse();
-            pathResponse.setPath(shortlistedPaths.get(0));
-            return pathResponse;
         }
+
+        for (Node node : nodes) {
+            graph.addNode(node.getName());
+        }
+
+        for (Edge edge : edges) {
+            graph.addEdge(edge.getFrom().getName(), edge.getTo().getName(), edge.getCost());
+        }
+
+        FindAllPaths<String> findAllPaths = new FindAllPaths<>(graph);
+        List<List<String>> paths = findAllPaths.getAllPaths(from.getName(), to.getName());
+        Node node;
+        com.doodly.api.objects.Path costPath;
+        double cost;
+        List<com.doodly.api.objects.Path> shortlistedPaths = new ArrayList<>();
+        for (List<String> path : paths) {
+            cost = findAllPaths.getCost(path);
+            costPath = new com.doodly.api.objects.Path();
+            for (String pathNode : path) {
+                node = new Node();
+                node.setName(pathNode);
+                costPath.addPath(node);
+            }
+            costPath.setCost(cost);
+            if (costPath.getNodes().size() > 2) {
+                shortlistedPaths.add(costPath);
+            }
+        }
+        Collections.sort(shortlistedPaths, com.doodly.api.objects.Path.PathComparator);
+        PathResponse pathResponse = new PathResponse();
+        pathResponse.setPath(shortlistedPaths.get(0));
+        return pathResponse;
     }
 }
