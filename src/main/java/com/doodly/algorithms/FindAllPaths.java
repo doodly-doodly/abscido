@@ -68,7 +68,7 @@ public class FindAllPaths<T> {
         validate(source, destination);
 
         List<List<T>> paths = new ArrayList<>();
-        recursive(source, destination, paths, new LinkedHashSet<>());
+        recursive(source, destination, paths, (LinkedHashSet<T>) new LinkedHashSet<>());
         System.out.println(paths);
         return paths;
     }
