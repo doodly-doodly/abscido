@@ -19,4 +19,12 @@ public class Node {
     public void setName(String name) {
         this.name = name;
     }
+    
+    @Override
+    public boolean equals(Object obj){
+        if(this.getName().equals(((Node)obj).getName())){
+            return true;
+        }
+        return false;
+    }
 }

@@ -13,22 +13,9 @@ import java.util.Set;
 /**
  *
  * @author gokumar
+ * @param <T>
  */
 public class FindAllPaths<T> {
-    private List<List<T>> intersection(List<List<T>> paths, List<T> newRequestPath) {
-        List<List<T>> intersectionPaths = new ArrayList<>();
-        for (List<T> path : paths) {
-            T str1 = newRequestPath.get(0);
-            T str2 = newRequestPath.get(1);
-            int indx1 = path.indexOf(str1);
-            int indx2 = path.indexOf(str2);
-            if (indx1 == -1 || indx2 == -1) {
-            } else if (indx2 > indx1) {
-                intersectionPaths.add(path);
-            }
-        }
-        return intersectionPaths;
-    }
 
     private final Graph<T> graph;
 
@@ -103,45 +90,46 @@ public class FindAllPaths<T> {
 
         path.remove(current);
     }
-    
-    public static void main(String[] args) {
-        Graph<String> graph = new Graph<>();
-        graph.addNode("s");
-        graph.addNode("o");
-        graph.addNode("p");
-        graph.addNode("q");
-        graph.addNode("r");
-        graph.addNode("t");
 
-        graph.addEdge("s", "o", 10);
-        graph.addEdge("s", "p", 20);
-        graph.addEdge("o", "q", 30);
-        graph.addEdge("p", "r", 10);
-        graph.addEdge("q", "r", 10);
-        graph.addEdge("q", "t", 10);
-        graph.addEdge("r", "t", 10);
+//    public static void main(String[] args) {
+//        Graph<String> graph = new Graph<>();
+//        graph.addNode("s");
+//        graph.addNode("o");
+//        graph.addNode("p");
+//        graph.addNode("q");
+//        graph.addNode("r");
+//        graph.addNode("t");
+//
+//        graph.addEdge("s", "o", 10);
+//        graph.addEdge("s", "p", 20);
+//        graph.addEdge("o", "q", 30);
+//        graph.addEdge("p", "r", 10);
+//        graph.addEdge("q", "r", 10);
+//        graph.addEdge("q", "t", 10);
+//        graph.addEdge("r", "t", 10);
+//
+//        //reverse
+//        graph.addEdge("o", "s", 5);
+//        graph.addEdge("p", "s", 20);
+//        graph.addEdge("q", "o", 28);
+//        graph.addEdge("r", "p", 15);
+//        graph.addEdge("r", "q", 10);
+//        graph.addEdge("t", "q", 4);
+//        graph.addEdge("t", "r", 10);
+//
+//        FindAllPaths<String> findAllPaths = new FindAllPaths<>(graph);
+//        List<List<String>> paths = findAllPaths.getAllPaths("t", "s");
+//        findAllPaths.getAllPaths("s", "t");
+//
+//        List<String> newRequest = new ArrayList<>();
+//        newRequest.add("t");
+//        newRequest.add("o");
+//        System.out.println("New Request Path: " + newRequest);
+//        List<List<String>> intersections = findAllPaths.intersection(paths, newRequest);
+//        System.out.println("Pick existing path: " + intersections);
+//        for (List<String> path : intersections) {
+//            findAllPaths.getCost(path);
+//        }
+//    }
 
-        //reverse
-        graph.addEdge("o", "s", 5);
-        graph.addEdge("p", "s", 20);
-        graph.addEdge("q", "o", 28);
-        graph.addEdge("r", "p", 15);
-        graph.addEdge("r", "q", 10);
-        graph.addEdge("t", "q", 4);
-        graph.addEdge("t", "r", 10);
-
-        FindAllPaths<String> findAllPaths = new FindAllPaths<>(graph);
-        List<List<String>> paths = findAllPaths.getAllPaths("t", "s");
-        findAllPaths.getAllPaths("s", "t");
-
-        List<String> newRequest = new ArrayList<>();
-        newRequest.add("t");
-        newRequest.add("o");
-        System.out.println("New Request Path: " + newRequest);
-        List<List<String>> intersections = findAllPaths.intersection(paths, newRequest);
-        System.out.println("Pick existing path: " + intersections);
-        for(List<String> path: intersections){
-            findAllPaths.getCost(path);
-        }
-    }
 }
