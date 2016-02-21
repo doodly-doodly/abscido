@@ -65,9 +65,6 @@ public class Path implements Comparable<Path> {
 
             //ascending order
             return cost1.compareTo(cost2);
-
-            //descending order
-            //return fruitName2.compareTo(fruitName1);
         }
 
     };
