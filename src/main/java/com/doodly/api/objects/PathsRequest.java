@@ -15,11 +15,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PathsRequest {
     private List<Node> nodes;
     private List<Edge> edges;
+    private List<Path> existingPaths;
     private Node from;
     private Node to;
 
     public Node getFrom() {
         return from;
+    }
+
+    public List<Path> getExistingPaths() {
+        return existingPaths;
+    }
+
+    public void setExistingPaths(List<Path> existingPaths) {
+        this.existingPaths = existingPaths;
     }
 
     public void setFrom(Node from) {
